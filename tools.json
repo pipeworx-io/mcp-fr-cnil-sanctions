@@ -1,0 +1,60 @@
+[
+  {
+    "name": "cnil_sanctions_search",
+    "description": "Search the sanctions the CNIL (France's data-protection authority, Commission nationale de l'informatique et des libertés) restricted committee has pronounced against organisations under the GDPR and the French data-protection law: administrative fines in euros, injunctions, penalty payments, with the failings found (défaut de sécurité des données, durée de conservation, cookies, information des personnes, prospection commerciale, vidéoprotection). Each hit gives the date, the deliberation reference (SAN-2026-001), the type of organisation (opérateur de téléphonie mobile, société de vente à distance, ministère, commune), the themes, the outcome with the fine in euros and the link to the deliberation. Filter by sector or theme word, year or a minimum fine. Sanctions against individuals are dropped and counted. Pass at least one of query, year or min_fine_eur. Example: query=\"cookies\" or min_fine_eur=1000000. Use cnil_sanction_get for one row.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Word in the organisation type, theme or outcome (e.g. \"sécurité des données\", \"cookies\", \"téléphonie\", \"vente à distance\"). Optional."
+        },
+        "year": {
+          "type": "number",
+          "description": "Only sanctions dated in this year (e.g. 2025). Optional."
+        },
+        "min_fine_eur": {
+          "type": "number",
+          "description": "Only sanctions with a fine or penalty payment of at least this many euros. Optional."
+        },
+        "limit": {
+          "type": "number",
+          "description": "Rows to return (1-50, default 20)."
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "query"
+          ]
+        },
+        {
+          "required": [
+            "year"
+          ]
+        },
+        {
+          "required": [
+            "min_fine_eur"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "cnil_sanction_get",
+    "description": "Get one CNIL sanction against an organisation by its id (as returned by cnil_sanctions_search, such as 2026-01-08-1): the date, the deliberation reference, the type of organisation, every failing found, the full outcome (fine in euros, injunction, penalty payment) and the link to the deliberation that names the organisation. An unknown id returns found:false. Example: id=\"2026-01-08-1\".",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Sanction id such as 2026-01-08-1 (date plus position within that date), as returned by cnil_sanctions_search."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+]

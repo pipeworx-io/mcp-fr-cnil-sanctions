@@ -1,0 +1,33 @@
+{
+  "name": "@pipeworx/mcp-fr-cnil-sanctions",
+  "version": "0.1.0",
+  "description": "fr-cnil-sanctions -- CNIL (Commission nationale de l'informatique et des libertes, France's data-protection authority): the list of sanctions pronounced by its restricted committee (formation restreinte) against organisations: type of organisation, the failings found, the sanction (administrative…",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./tools.json": "./tools.json",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "mcp-fr-cnil-sanctions": "bin/cli.js"
+  },
+  "files": ["bin/", "lib/", "tools.json", "server.json"],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "fr-cnil-sanctions"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipeworx-io/mcp-fr-cnil-sanctions.git"
+  },
+  "mcpName": "io.github.pipeworx-io/fr-cnil-sanctions",
+  "pipeworx": {
+    "mode": "gateway",
+    "slug": "fr-cnil-sanctions",
+    "gatewaySlug": "fr-cnil-sanctions",
+    "sourceHash": "v1-d099ce0ac0a8667c9974b087d7530947a3b0261c50bc0f69b62a1e34501cd251",
+    "sourceCommit": "874331b0c46b151f9264bd14840631427a7721c1"
+  }
+}
